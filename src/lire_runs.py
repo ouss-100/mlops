@@ -1,0 +1,13 @@
+import mlflow   # on réutilise le module MLflow pour LIRE les résultats
+
+runs = mlflow.search_runs(
+    experiment_names=["churn-prediction"],
+    order_by=["metrics.f1 DESC"])
+
+colonnes = ["tags.mlflow.runName", "params.n_estimators", "params.max_depth",
+            "metrics.accuracy", "metrics.f1"]
+print(runs[colonnes].to_string(index=False))   # index=False : sans numéros de ligne
+
+meilleur = runs.iloc[0]
+print()
+print("Meilleur run :", meilleur["tags.mlflow.runName"], "| id :", meilleur["run_id"][:8], "...")
