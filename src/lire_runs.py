@@ -1,4 +1,4 @@
-import mlflow   # on réutilise le module MLflow pour LIRE les résultats
+import mlflow
 
 runs = mlflow.search_runs(
     experiment_names=["churn-prediction"],
